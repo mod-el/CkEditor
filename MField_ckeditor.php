@@ -15,7 +15,7 @@ class MField_ckeditor extends MField {
 		return 600;
 	}
 
-	public function getEstimatedWidth($options){
+	public function getEstimatedWidth(array $options){
 		return round(600/$options['column-width']);
 	}
 }
