@@ -1,5 +1,5 @@
 <?php
-require_once('../../../data/config/config.php');
+require_once('..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'config.php');
 
 $url = null;
 
