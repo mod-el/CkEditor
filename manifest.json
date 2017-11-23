@@ -1,0 +1,12 @@
+{
+	"name": "CkEditor",
+	"description": "Integration with CkEditor v 4.7.3 (via CDN)",
+	"version": "1.2.0",
+	"dependencies": {
+		"JQuery": ">=1.0.0"
+	},
+	"js": [
+		"https://cdn.ckeditor.com/4.7.3/full-all/ckeditor.js",
+		"files/check.js"
+	]
+}

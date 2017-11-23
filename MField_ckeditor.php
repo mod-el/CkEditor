@@ -1,5 +1,6 @@
-<?php
-namespace Model;
+<?php namespace Model\CkEditor;
+
+use Model\Form\MField;
 
 class MField_ckeditor extends MField {
 	protected function renderWithLang(array $attributes, $lang = false){
