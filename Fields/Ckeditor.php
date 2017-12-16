@@ -1,8 +1,8 @@
-<?php namespace Model\CkEditor;
+<?php namespace Model\CkEditor\Fields;
 
 use Model\Form\MField;
 
-class MField_ckeditor extends MField {
+class Ckeditor extends MField {
 	protected function renderWithLang(array $attributes, $lang = false){
 		if(isset($attributes['class']))
 			$attributes['class'] .= ' ckeditor_textarea';
