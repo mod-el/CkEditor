@@ -12,7 +12,7 @@ function checkCkEditor() {
 			if (elements[i].getAttribute('data-ckeditor-attached') !== null) continue;
 
 			var options = {
-				'extraPlugins': 'uploadimage',
+				'extraPlugins': 'image2,pastefromword',
 				'uploadUrl': base_path + 'model/CkEditor/files/upload.php?type=drop',
 				'filebrowserUploadUrl': base_path + 'model/CkEditor/files/upload.php?type=upload',
 				'skin': 'moonocolor,' + base_path + 'model/CkEditor/files/skins/moonocolor/'
