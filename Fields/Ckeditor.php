@@ -2,9 +2,11 @@
 
 use Model\Form\MField;
 
-class Ckeditor extends MField {
-	protected function renderWithLang(array $attributes, $lang = false){
-		if(isset($attributes['class']))
+class Ckeditor extends MField
+{
+	protected function renderWithLang(array $attributes, string $lang = null)
+	{
+		if (isset($attributes['class']))
 			$attributes['class'] .= ' ckeditor_textarea';
 		else
 			$attributes['class'] = 'ckeditor_textarea';
@@ -12,11 +14,13 @@ class Ckeditor extends MField {
 		parent::renderWithLang($attributes, $lang);
 	}
 
-	public function getMinWidth(){
+	public function getMinWidth(): int
+	{
 		return 600;
 	}
 
-	public function getEstimatedWidth(array $options){
-		return round(600/$options['column-width']);
+	public function getEstimatedWidth(array $options): int
+	{
+		return round(600 / $options['column-width']);
 	}
 }
