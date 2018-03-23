@@ -6,11 +6,17 @@ class Ckeditor extends MField
 {
 	protected function renderWithLang(array $attributes, string $lang = null)
 	{
+		if ($this->options['form'] and $this->options['form']->options['print']) {
+			echo $this->getText(['lang' => $lang]);
+			return;
+		}
+
 		if (isset($attributes['class']))
 			$attributes['class'] .= ' ckeditor_textarea';
 		else
 			$attributes['class'] = 'ckeditor_textarea';
 
+		$this->options['type'] = 'textarea';
 		parent::renderWithLang($attributes, $lang);
 	}
 
