@@ -1,7 +1,7 @@
 var ckeditorsArr = [];
 
 function checkCkEditor() {
-	return new Promise(function(resolve) {
+	return new Promise(function (resolve) {
 		if (typeof CKEDITOR === 'undefined')
 			return resolve();
 
@@ -49,28 +49,34 @@ function checkCkEditor() {
 	});
 }
 
-window.addEventListener('load', function(){
+window.addEventListener('load', function () {
 	observeMutations(checkCkEditor);
 });
 
-function getCkEditorValue(){
-	if(this.getAttribute('data-ckeditor-attached')===null)
+function getCkEditorValue() {
+	if (this.getAttribute('data-ckeditor-attached') === null)
 		return null;
 
 	var index = parseInt(this.getAttribute('data-ckeditor-attached'));
-	if(typeof ckeditorsArr[index]==='undefined')
+	if (typeof ckeditorsArr[index] === 'undefined')
 		return null;
 
 	return ckeditorsArr[index].getData();
 }
 
-function setCkEditorValue(v){
-	if(this.getAttribute('data-ckeditor-attached')===null)
+function setCkEditorValue(v) {
+	if (this.getAttribute('data-ckeditor-attached') === null)
 		return null;
 
 	var index = parseInt(this.getAttribute('data-ckeditor-attached'));
-	if(typeof ckeditorsArr[index]==='undefined')
+	if (typeof ckeditorsArr[index] === 'undefined')
 		return null;
 
-	return ckeditorsArr[index].setData(v);
+	return new Promise(function (resolve) {
+		ckeditorsArr[index].setData(v, {
+			callback: function(){
+				resolve();
+			}
+		})
+	});
 }
