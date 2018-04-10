@@ -1,52 +1,63 @@
 var ckeditorsArr = [];
 
 function checkCkEditor() {
-	return new Promise(function (resolve) {
-		if (typeof CKEDITOR === 'undefined')
-			return resolve();
+	if (typeof CKEDITOR === 'undefined')
+		return resolve();
 
-		var elements = document.querySelectorAll('.ckeditor_textarea');
-		for (var i in elements) {
-			if (!elements.hasOwnProperty(i)) continue;
-			if (elements[i].offsetParent === null) continue;
-			if (elements[i].getAttribute('data-ckeditor-attached') !== null) continue;
+	let promises = [];
+	let elements = document.querySelectorAll('.ckeditor_textarea');
+	for (let i in elements) {
+		if (!elements.hasOwnProperty(i)) continue;
+		if (elements[i].offsetParent === null) continue;
+		if (elements[i].getAttribute('data-ckeditor-attached') !== null) continue;
 
-			var options = {
+		promises.push(new Promise(resolve => {
+			let options = {
 				'extraPlugins': 'image2,pastefromword',
 				'uploadUrl': base_path + 'model/CkEditor/files/upload.php?type=drop',
 				'filebrowserUploadUrl': base_path + 'model/CkEditor/files/upload.php?type=upload',
-				'skin': 'moonocolor,' + base_path + 'model/CkEditor/files/skins/moonocolor/'
+				'skin': 'moonocolor,' + base_path + 'model/CkEditor/files/skins/moonocolor/',
+				'on': {
+					'instanceReady': (function (textarea, resolve) {
+						return function (event) {
+							let index = (ckeditorsArr.push(event.editor)) - 1;
+
+							textarea.setAttribute('data-getvalue-function', 'getCkEditorValue');
+							textarea.setAttribute('data-setvalue-function', 'setCkEditorValue');
+							textarea.setAttribute('data-ckeditor-attached', index);
+
+							event.editor.on('blur', (function (el) {
+								return function () {
+									if ("createEvent" in document) {
+										let evt = document.createEvent("HTMLEvents");
+										evt.initEvent("change", false, true);
+										el.dispatchEvent(evt);
+									} else {
+										el.fireEvent("onchange");
+									}
+								}
+							})(elements[i]));
+
+							resolve();
+						};
+					})(elements[i], resolve)
+				}
 			};
 			if (elements[i].getAttribute('data-ckeditor')) {
-				var newOptions = JSON.parse(elements[i].getAttribute('data-ckeditor'));
+				let newOptions = JSON.parse(elements[i].getAttribute('data-ckeditor'));
 				if (typeof newOptions === 'object') {
-					for (var k in newOptions) {
+					for (let k in newOptions) {
 						options[k] = newOptions[k];
 					}
 				}
 			}
 
-			var editor = CKEDITOR.replace(elements[i], options);
-			var index = (ckeditorsArr.push(editor)) - 1;
+			elements[i].setAttribute('data-ckeditor-attached', 'attaching');
 
-			elements[i].setAttribute('data-getvalue-function', 'getCkEditorValue');
-			elements[i].setAttribute('data-setvalue-function', 'setCkEditorValue');
-			elements[i].setAttribute('data-ckeditor-attached', index);
-
-			editor.on('blur', (function (el) {
-				return function () {
-					if ("createEvent" in document) {
-						var evt = document.createEvent("HTMLEvents");
-						evt.initEvent("change", false, true);
-						el.dispatchEvent(evt);
-					} else {
-						el.fireEvent("onchange");
-					}
-				}
-			})(elements[i]));
-		}
-		resolve();
-	});
+			CKEDITOR.replace(elements[i], options);
+		}));
+	}
+	return Promise.all(promises);
 }
 
 window.addEventListener('load', function () {
@@ -54,10 +65,10 @@ window.addEventListener('load', function () {
 });
 
 function getCkEditorValue() {
-	if (this.getAttribute('data-ckeditor-attached') === null)
-		return null;
+	if (this.getAttribute('data-ckeditor-attached') === null || this.getAttribute('data-ckeditor-attached') === 'attaching')
+		return this.value;
 
-	var index = parseInt(this.getAttribute('data-ckeditor-attached'));
+	let index = parseInt(this.getAttribute('data-ckeditor-attached'));
 	if (typeof ckeditorsArr[index] === 'undefined')
 		return null;
 
@@ -65,16 +76,18 @@ function getCkEditorValue() {
 }
 
 function setCkEditorValue(v) {
-	if (this.getAttribute('data-ckeditor-attached') === null)
-		return null;
+	if (this.getAttribute('data-ckeditor-attached') === null || this.getAttribute('data-ckeditor-attached') === 'attaching') {
+		this.value = v;
+		return true;
+	}
 
-	var index = parseInt(this.getAttribute('data-ckeditor-attached'));
+	let index = parseInt(this.getAttribute('data-ckeditor-attached'));
 	if (typeof ckeditorsArr[index] === 'undefined')
 		return null;
 
 	return new Promise(function (resolve) {
 		ckeditorsArr[index].setData(v, {
-			callback: function(){
+			callback: function () {
 				resolve();
 			}
 		})
