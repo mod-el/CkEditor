@@ -3,7 +3,8 @@
 	"description": "Integration with CkEditor v 4.9.1 (via CDN)",
 	"version": "1.4.0",
 	"dependencies": {
-		"JQuery": ">=1.1.0"
+		"JQuery": ">=1.1.0",
+		"Form": ">=1.4.3"
 	},
 	"js": [
 		"https://cdn.ckeditor.com/4.9.1/full-all/ckeditor.js",

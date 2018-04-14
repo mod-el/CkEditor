@@ -1,8 +1,8 @@
 <?php namespace Model\CkEditor\Fields;
 
-use Model\Form\MField;
+use Model\Form\Field;
 
-class Ckeditor extends MField
+class Ckeditor extends Field
 {
 	protected function renderWithLang(array $attributes, string $lang = null)
 	{
