@@ -61,7 +61,7 @@ function checkCkEditor() {
 }
 
 window.addEventListener('load', function () {
-	observeMutations(checkCkEditor);
+	onHtmlChange(checkCkEditor);
 });
 
 function getCkEditorValue() {
