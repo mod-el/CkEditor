@@ -20,6 +20,14 @@ class Ckeditor extends Field
 		parent::renderWithLang($attributes, $lang);
 	}
 
+	public function getText(array $options = []): string
+	{
+		$text = parent::getText($options);
+		if (isset($options['preview']) and $options['preview'])
+			$text = strip_tags($text);
+		return $text;
+	}
+
 	public function getMinWidth(): int
 	{
 		return 600;
