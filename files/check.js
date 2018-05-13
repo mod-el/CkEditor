@@ -14,6 +14,7 @@ function checkCkEditor() {
 		promises.push(new Promise(resolve => {
 			let options = {
 				'extraPlugins': 'image2,pastefromword',
+				'filebrowserUploadMethod': 'form',
 				'uploadUrl': base_path + 'model/CkEditor/files/upload.php?type=drop',
 				'filebrowserUploadUrl': base_path + 'model/CkEditor/files/upload.php?type=upload',
 				'skin': 'moonocolor,' + base_path + 'model/CkEditor/files/skins/moonocolor/',
