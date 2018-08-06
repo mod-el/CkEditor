@@ -24,7 +24,7 @@ class Ckeditor extends Field
 	{
 		$text = parent::getText($options);
 		if (isset($options['preview']) and $options['preview'])
-			$text = strip_tags($text);
+			$text = html_entity_decode(strip_tags($text), ENT_QUOTES, 'UTF-8');
 		return $text;
 	}
 
