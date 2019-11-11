@@ -13,7 +13,7 @@ function checkCkEditor() {
 
 		promises.push(new Promise(resolve => {
 			let options = {
-				'extraPlugins': 'image2,pastefromword',
+				'extraPlugins': 'image2,pastetools,pastefromword,pastefromgdocs',
 				'filebrowserUploadMethod': 'form',
 				'uploadUrl': PATHBASE + 'model/CkEditor/files/upload.php?type=drop',
 				'filebrowserUploadUrl': PATHBASE + 'model/CkEditor/files/upload.php?type=upload',
