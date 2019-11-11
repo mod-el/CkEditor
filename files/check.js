@@ -15,9 +15,9 @@ function checkCkEditor() {
 			let options = {
 				'extraPlugins': 'image2,pastefromword',
 				'filebrowserUploadMethod': 'form',
-				'uploadUrl': base_path + 'model/CkEditor/files/upload.php?type=drop',
-				'filebrowserUploadUrl': base_path + 'model/CkEditor/files/upload.php?type=upload',
-				'skin': 'moonocolor,' + base_path + 'model/CkEditor/files/skins/moonocolor/',
+				'uploadUrl': PATHBASE + 'model/CkEditor/files/upload.php?type=drop',
+				'filebrowserUploadUrl': PATHBASE + 'model/CkEditor/files/upload.php?type=upload',
+				'skin': 'moonocolor,' + PATHBASE + 'model/CkEditor/files/skins/moonocolor/',
 				'on': {
 					'instanceReady': (function (textarea, resolve) {
 						return function (event) {
