@@ -1,6 +1,6 @@
 {
 	"name": "CkEditor",
-	"description": "Integration with CkEditor v 4.13.0 (via CDN)",
+	"description": "Integration with CkEditor v 4.13.1 (via CDN)",
 	"version": "1.5.1",
 	"dependencies": {
 		"JQuery": ">=1.2.0",
