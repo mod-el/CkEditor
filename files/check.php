@@ -44,12 +44,18 @@ function checkCkEditor() {
 					})(elements[i], resolve)
 				}
 			};
+			<?php
+			require('../../../app/config/CkEditor/config.php');
+			?>
+			let customOptions = <?=json_encode($config)?>;
+			for (let k of Object.keys(customOptions))
+				options[k] = customOptions[k];
+
 			if (elements[i].getAttribute('data-ckeditor')) {
 				let newOptions = JSON.parse(elements[i].getAttribute('data-ckeditor'));
 				if (typeof newOptions === 'object') {
-					for (let k in newOptions) {
+					for (let k in newOptions)
 						options[k] = newOptions[k];
-					}
 				}
 			}
 
