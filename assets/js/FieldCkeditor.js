@@ -13,7 +13,8 @@ class FieldCkeditor extends Field {
 		else
 			attributes['class'] = 'ckeditor_textarea';
 
-		super.assignAttributesAndEvents(node, attributes);
+		super.assignAttributes(node, attributes);
+		super.assignEvents(node);
 
 		return node;
 	}
