@@ -8,7 +8,7 @@ class FieldCkeditor extends Field {
 
 		let attributes = this.options['attributes'];
 
-		if(attributes.hasOwnProperty('class'))
+		if (attributes.hasOwnProperty('class'))
 			attributes['class'] += ' ckeditor_textarea';
 		else
 			attributes['class'] = 'ckeditor_textarea';
@@ -20,4 +20,5 @@ class FieldCkeditor extends Field {
 	}
 }
 
-formSignatures.set('ckeditor', FieldCkeditor);
+if (formSignatures)
+	formSignatures.set('ckeditor', FieldCkeditor);
