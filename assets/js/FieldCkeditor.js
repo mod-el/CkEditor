@@ -14,7 +14,7 @@ class FieldCkeditor extends Field {
 			attributes['class'] = 'ckeditor_textarea';
 
 		super.assignAttributes(node, attributes);
-		super.assignEvents(node, attributes);
+		super.assignEvents(node, attributes, lang);
 
 		return node;
 	}
