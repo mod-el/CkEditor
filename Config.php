@@ -79,8 +79,8 @@ $config = ' . var_export([
 	 */
 	public function postUpdate_2_0_0()
 	{
-		$file = INCLUDE_PATH . 'app' . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'User';
-		require_once(INCLUDE_PATH . 'app' . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'CkEditor' . DIRECTORY_SEPARATOR . 'config.php');
+		$file = INCLUDE_PATH . 'app' . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'CkEditor' . DIRECTORY_SEPARATOR . 'config.php';
+		require_once($file);
 		$config = [
 			'include-host-in-uploads' => false,
 			'ckeditor' => $config,
