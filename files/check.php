@@ -47,7 +47,7 @@ function checkCkEditor() {
 			<?php
 			require('../../../app/config/CkEditor/config.php');
 			?>
-			let customOptions = <?=json_encode($config)?>;
+			let customOptions = <?=json_encode($config['ckeditor'])?>;
 			for (let k of Object.keys(customOptions))
 				options[k] = customOptions[k];
 
