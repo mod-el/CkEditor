@@ -88,4 +88,9 @@ $config = ' . var_export([
 		file_put_contents($file, "<?php\n\$config = " . var_export($config, true) . ";\n");
 		return true;
 	}
+
+	public function getConfigData(): ?array
+	{
+		return [];
+	}
 }
