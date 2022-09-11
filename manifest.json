@@ -3,7 +3,6 @@
 	"description": "Integration with CkEditor v 4.16.2 (via CDN)",
 	"version": "2.1.0",
 	"dependencies": {
-		"JQuery": ">=1.3.0",
 		"Form": ">=1.5.0",
 		"FrontEnd": ">=1.2.3",
 		"Core": ">=2.10.0"
@@ -12,5 +11,8 @@
 		"https://cdn.ckeditor.com/4.16.2/full-all/ckeditor.js",
 		"files/check.php"
 	],
-	"assets-position": "foot"
+	"assets-position": "foot",
+	"requires": [
+		"model/assets"
+	]
 }
