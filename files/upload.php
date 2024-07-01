@@ -6,7 +6,10 @@ require_once('..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DI
 
 $url = null;
 
-if (isset($_FILES['upload'])) {
+try {
+	if (!isset($_FILES['upload']))
+		throw new \Exception('No file detected');
+
 	$path = '../../../app-data/img/uploads/';
 	if (!is_dir($path))
 		mkdir($path, 0777, true);
@@ -33,44 +36,17 @@ if (isset($_FILES['upload'])) {
 
 			$url = $host . PATH . 'app-data/img/uploads/' . $filename . '.' . $ext;
 		} else {
-			$error = 'Error in saving file, please retry';
+			throw new \Exception('Error in saving file, please retry');
 		}
 	} else {
-		$error = 'Error ' . $_FILES['upload']['error'] . ' in uploading file, please retry';
+		throw new \Exception('Error ' . $_FILES['upload']['error'] . ' in uploading file, please retry');
 	}
-} else {
-	$error = 'No file detected';
-}
 
-switch ($_GET['type']) {
-	case 'drop':
-		if (isset($error)) {
-			$response = [
-				'uploaded' => 0,
-				'error' => [
-					'message' => $error,
-				],
-			];
-		} elseif (isset($url, $filename)) {
-			$response = [
-				'uploaded' => 1,
-				'fileName' => $filename . '.' . $ext,
-				'url' => $url,
-			];
-		} else {
-			$response = [
-				'uploaded' => 0,
-				'error' => [
-					'message' => 'An unknown error occurred',
-				],
-			];
-		}
+	echo json_encode(['url' => $url]);
+} catch (\Throwable $e) {
+	http_response_code(500);
 
-		echo json_encode($response);
-		break;
-	case 'upload':
-		?>
-		<script>window.parent.CKEDITOR.tools.callFunction(<?=$_GET['CKEditorFuncNum']?>, <?=json_encode($url)?>, <?=isset($error) ? json_encode($error) : 'null'?>)</script>
-		<?php
-		break;
+	echo json_encode([
+		'error' => ['message' => $e->getMessage()],
+	]);
 }

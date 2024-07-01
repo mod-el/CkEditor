@@ -1,15 +1,14 @@
 {
 	"name": "CkEditor",
-	"description": "Integration with CkEditor v 4.16.2 (via CDN)",
-	"version": "2.1.0",
+	"description": "Integration with CkEditor v 5.42.0 (via CDN)",
+	"version": "3.0.0",
 	"dependencies": {
 		"Form": ">=1.5.0",
 		"FrontEnd": ">=1.2.3",
 		"Core": ">=2.10.0"
 	},
-	"js": [
-		"https://cdn.ckeditor.com/4.16.2/full-all/ckeditor.js",
-		"files/check.php"
+	"css": [
+		"https://cdn.ckeditor.com/ckeditor5/42.0.0/ckeditor5.css"
 	],
 	"assets-position": "foot",
 	"requires": [
