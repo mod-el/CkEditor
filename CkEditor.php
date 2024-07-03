@@ -15,6 +15,11 @@ class CkEditor extends Module
 				}
 			}
 		</script>
+		<style>
+			.ck-editor__editable {
+				min-height: 250px;
+			}
+		</style>
 		<script type="module">
 			import {checkCkEditor, getCkEditorValue, setCkEditorValue} from "<?= PATH ?>model/CkEditor/files/check.js";
 
