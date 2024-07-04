@@ -19,6 +19,10 @@ class CkEditor extends Module
 			.ck-editor__editable {
 				min-height: 250px;
 			}
+
+			.ck.ck-balloon-panel {
+				z-index: 10000 !important;
+			}
 		</style>
 		<script type="module">
 			import {checkCkEditor, getCkEditorValue, setCkEditorValue} from "<?= PATH ?>model/CkEditor/files/check.js";
