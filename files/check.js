@@ -68,6 +68,7 @@ import {
 	TodoList,
 	Underline,
 	Undo,
+	WordCount
 } from 'ckeditor5';
 
 import FullScreen from "./fullscreen.js";
@@ -182,6 +183,7 @@ const editorConfig = {
 		TodoList,
 		Underline,
 		Undo,
+		WordCount,
 		FullScreen,
 	],
 	balloonToolbar: [
@@ -330,6 +332,13 @@ export async function checkCkEditor() {
 		}));
 	}
 	return Promise.all(promises);
+}
+
+export function getCkEditorInstance(index = 0) {
+	if (typeof ckeditorsArr[index] === 'undefined')
+		return null;
+
+	return ckeditorsArr[index];
 }
 
 export function getCkEditorValue() {

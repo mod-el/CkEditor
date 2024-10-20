@@ -25,11 +25,12 @@ class CkEditor extends Module
 			}
 		</style>
 		<script type="module">
-			import {checkCkEditor, getCkEditorValue, setCkEditorValue} from "<?= PATH ?>model/CkEditor/files/check.js";
+			import {checkCkEditor, getCkEditorValue, setCkEditorValue, getCkEditorInstance} from "<?= PATH ?>model/CkEditor/files/check.js";
 
 			window.checkCkEditor = checkCkEditor;
 			window.getCkEditorValue = getCkEditorValue;
 			window.setCkEditorValue = setCkEditorValue;
+			window.getCkEditorInstance = getCkEditorInstance;
 		</script>
 		<?php
 	}
