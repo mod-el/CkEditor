@@ -4,7 +4,7 @@ use Model\Form\Field;
 
 class Ckeditor extends Field
 {
-	protected function renderWithLang(array $attributes, string $lang = null)
+	protected function renderWithLang(array $attributes, ?string $lang = null): void
 	{
 		if ($this->options['form'] and $this->options['form']->options['print']) {
 			echo $this->getText(['lang' => $lang]);
