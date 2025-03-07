@@ -275,17 +275,23 @@ const editorConfig = {
 	},
 	language: 'it',
 	link: {
-		addTargetToExternalLinks: true,
 		defaultProtocol: 'https://',
-		decorators: {
-			toggleDownloadable: {
+		decorators: [
+			{
 				mode: 'manual',
 				label: 'Downloadable',
 				attributes: {
-					download: 'file'
-				}
-			}
-		}
+					download: 'file',
+				},
+			},
+			{
+				mode: 'manual',
+				label: 'Apri in nuova scheda',
+				attributes: {
+					target: '_blank',
+				},
+			},
+		]
 	},
 	list: {
 		properties: {
