@@ -4,7 +4,7 @@ use Model\Core\Module;
 
 class CkEditor extends Module
 {
-	public function headings()
+	public function headings(): void
 	{
 		?>
 		<script type="importmap">
