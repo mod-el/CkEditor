@@ -22,6 +22,18 @@ try {
 		} while (file_exists($path . $filename . '.' . $ext));
 
 		if (move_uploaded_file($_FILES['upload']['tmp_name'], $path . $filename . '.' . $ext)) {
+			// Apply EXIF orientation correction (fixes rotated photos from iPhones)
+			$imageExts = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
+			if (in_array(strtolower($ext), $imageExts)) {
+				try {
+					$image = new \Model\Images\Image($path . $filename . '.' . $ext);
+					$image->save($path . $filename . '.' . $ext);
+					$image->destroy();
+				} catch (\Throwable $e) {
+					// If image processing fails, keep the original file
+				}
+			}
+
 			$host = '';
 			if ($config['include-host-in-uploads']) {
 				if (!defined('HTTPS')) {
