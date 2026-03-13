@@ -12,6 +12,7 @@
 	],
 	"assets-position": "foot",
 	"requires": [
-		"model/assets"
+		"model/assets",
+		"model/images"
 	]
 }
