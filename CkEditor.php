@@ -10,8 +10,8 @@ class CkEditor extends Module
 		<script type="importmap">
 			{
 				"imports": {
-					"ckeditor5": "https://cdn.ckeditor.com/ckeditor5/42.0.0/ckeditor5.js",
-					"ckeditor5/": "https://cdn.ckeditor.com/ckeditor5/42.0.0/"
+					"ckeditor5": "https://cdn.ckeditor.com/ckeditor5/43.3.1/ckeditor5.js",
+					"ckeditor5/": "https://cdn.ckeditor.com/ckeditor5/43.3.1/"
 				}
 			}
 		</script>

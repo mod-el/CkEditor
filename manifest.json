@@ -1,6 +1,6 @@
 {
 	"name": "CkEditor",
-	"description": "Integration with CkEditor v 5.42.0 (via CDN)",
+	"description": "Integration with CkEditor v 5.43.0 (via CDN)",
 	"version": "3.0.0",
 	"dependencies": {
 		"Form": ">=1.5.0",
@@ -8,7 +8,7 @@
 		"Core": ">=2.10.0"
 	},
 	"css": [
-		"https://cdn.ckeditor.com/ckeditor5/42.0.0/ckeditor5.css"
+		"https://cdn.ckeditor.com/ckeditor5/43.3.1/ckeditor5.css"
 	],
 	"assets-position": "foot",
 	"requires": [
